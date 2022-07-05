@@ -1,0 +1,54 @@
+{
+  "name": "react-admin-vite",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-components": "^1.1.7",
+    "antd": "^4.21.4",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "consola": "^2.15.3",
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "less": "^4.1.3",
+    "stylelint": "^14.9.1",
+    "stylelint-config-standard": "^26.0.0",
+    "stylelint-config-standard-scss": "^4.0.0",
+    "stylelint-scss": "^4.2.0",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.9",
+    "vite-plugin-style-import": "^2.0.0"
+  },
+  "description": "一个比较容易上手的基于react的admin系统",
+  "main": "index.html",
+  "keywords": [
+    "vite",
+    "react-router6",
+    "react18",
+    "antd",
+    "scss",
+    "less"
+  ],
+  "author": "ketong",
+  "license": "ISC"
+}
