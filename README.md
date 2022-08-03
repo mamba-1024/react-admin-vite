@@ -1,4 +1,4 @@
-<h1 align="center">Admin React</h1>
+<h1 align="center">React Admin</h1>
 
 <div align="center">
 
