@@ -7,15 +7,33 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx}": "eslint",
+    "*.{css,less,scss}": "stylelint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "dependencies": {
+    "@ant-design/charts": "^1.4.2",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^1.1.7",
-    "antd": "^4.21.4",
+    "@antv/g2plot": "^2.4.20",
+    "antd": "^4.21.7",
+    "axios": "^0.27.2",
+    "i18next": "^21.8.16",
+    "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-i18next": "^11.18.3",
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.0",
@@ -23,14 +41,20 @@
     "@vitejs/plugin-react": "^1.3.0",
     "consola": "^2.15.3",
     "eslint": "^8.18.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
     "less": "^4.1.3",
+    "lint-staged": "^13.0.3",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
     "stylelint-config-standard-scss": "^4.0.0",

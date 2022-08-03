@@ -3,7 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:jsx-a11y/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:jsx-a11y/recommended',
+    // 'plugin:prettier/recommended',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -12,13 +18,21 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'react-hooks', 'import'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks', 'import', 'prettier'],
   rules: {
+    'react/no-unescaped-entities': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx', '.ts'] }],
+    'react/function-component-definition': 0,
+    'react/no-unstable-nested-components': 0,
+    'react/prop-types': 0,
     'import/no-unresolved': 0,
     'import/extensions': 0,
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx', '.ts'] }],
+    'import/no-cycle': 0,
+    'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': 0,
     // 使用 2 个空格缩进
     indent: ['error', 2],
     // 使用分号
@@ -57,7 +71,7 @@ module.exports = {
       },
     ],
     // 函数最大行数，建议100，过长的函数不易阅读和维护，最好对其进行拆分
-    'max-lines-per-function': ['warn', { max: 100, skipBlankLines: true, skipComments: true }],
+    // 'max-lines-per-function': ['warn', { max: 200, skipBlankLines: true, skipComments: true }],
     // 使用 const 或 let 声明变量
     'no-var': 'error',
     'no-undef': 'error',
@@ -68,7 +82,7 @@ module.exports = {
     // 声明的变量必须被使用
     'no-unused-vars': 'error',
     // 不要在声明前就使用变量
-    'no-use-before-define': 'error',
+    'no-use-before-define': ['error', { 'functions': false }],
     // 变量不要与外层作用域已存在的变量同名
     'no-shadow': 'error',
     // 不要重复声明变量和函数
@@ -83,5 +97,11 @@ module.exports = {
     quotes: ['error', 'single'],
     // 禁止不必要的转义字符
     'no-useless-escape': 'error',
+    // 箭头函数
+    'arrow-parens': [2, 'as-needed', { requireForBlockBody: true }],
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'jsx-a11y/no-static-element-interactions': [0],
+    'jsx-a11y/click-events-have-key-events': ['off'],
+    'no-nested-ternary': 0,
   },
 };

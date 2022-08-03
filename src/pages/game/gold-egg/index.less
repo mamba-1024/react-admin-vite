@@ -1,0 +1,111 @@
+.wrap {
+  .egg-content {
+    height: 460px;
+    width: 600px;
+    background-color:cornsilk;
+    position: relative;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .egg-item {
+    position: absolute;
+    width: 200px;
+    height: 190px;
+  }
+  .egg {
+    height: 200px;
+    width: 190px;
+    background-image: url('../../../public/egg_1.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .hammer {
+    position: absolute;
+    top: -80px,;
+    left: 50%;
+    height: 80px;
+    width: 70px;
+    visibility: hidden;
+  }
+
+  /*
+  [https://cubic-bezier.com/#.5,.02,.5,1]
+
+  animation 动画说明：
+  animation-name: 指定应用的一系列动画，每个名称代表一个由@keyframes定义的动画序列。
+  animation-delay: 定义一个负值会让动画立即开始。但是动画会从它的动画序列中某位置开始。例如，如果设定值为 -2s，动画会从它的动画序列的第2秒位置处立即开始。
+  animation-duration: 指定一个动画周期的时长, 默认值为0s，表示无动画
+
+  贝塞尔曲线 cubic-bezier() [https://www.runoob.com/cssref/func-cubic-bezier.html]
+
+  x和y轴的时间总和是 scale的时间
+  3个图x和y轴动画加起来是18s , 18s/3 等于 6s
+  每个球y轴动画延迟 从0递减6s,
+  x轴与y轴相差动画时长的一半（9s/2）
+  */
+
+  .transformStyle1 {
+    animation: animX 9s cubic-bezier(0.5, 0, 0.5, 1) -4.5s infinite alternate,
+      animY 9s cubic-bezier(0.5, 0, 0.5, 1) 0s infinite alternate,
+      scale 18s cubic-bezier(0.5, 0, 0.5, 1) 0s infinite alternate;
+  }
+  .transformStyle2 {
+    animation: animX 9s cubic-bezier(0.5, 0, 0.5, 1) -10.5s infinite alternate,
+      animY 9s cubic-bezier(0.5, 0, 0.5, 1) -6s infinite alternate,
+      scale 18s cubic-bezier(0.5, 0, 0.5, 1) -6s infinite alternate;
+
+  }
+  .transformStyle3 {
+    animation: animX 9s cubic-bezier(0.5, 0, 0.5, 1) -16.5s infinite alternate,
+      animY 9s cubic-bezier(0.5, 0, 0.5, 1) -12s infinite alternate,
+      scale 18s cubic-bezier(0.5, 0, 0.5, 1) -12s infinite alternate;
+  }
+
+  .hammerTransform {
+    visibility: visible;
+    transform: rotate(-45deg);
+    transform-origin: 80px 70px;
+    animation-name: hammer;
+    animation-timing-function: ease;
+    animation-duration: 0.5s;
+  }
+
+  .activeEgg {
+    background-image: url('../../../public/egg_2.png');
+    transition-property: background-image;
+    transition-delay: 0.3s;
+  }
+}
+// 小锤子动画
+@keyframes hammer {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes animX{
+  0% {left: 0px;}
+  100% {left: 400px;}
+}
+@keyframes animY{
+  0% {top: 50px;}
+  100% {top: 200px;}
+}
+@keyframes scale {
+  0% {
+    transform: scale(0.8);
+    z-index: 1;
+  }
+  50% {
+    transform: scale(1);
+    z-index: 10;
+  }
+  100% {
+    transform: scale(0.8);
+    z-index: 1
+  }
+}

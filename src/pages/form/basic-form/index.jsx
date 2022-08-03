@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   AutoComplete,
   Button,
@@ -10,7 +11,7 @@ import {
   Row,
   Select,
 } from 'antd';
-import React, { useState } from 'react';
+
 const { Option } = Select;
 const residences = [
   {
@@ -52,7 +53,7 @@ const formItemLayout = {
       span: 24,
     },
     sm: {
-      span: 8,
+      span: 6,
     },
   },
   wrapperCol: {
@@ -60,7 +61,7 @@ const formItemLayout = {
       span: 24,
     },
     sm: {
-      span: 16,
+      span: 18,
     },
   },
 };
@@ -71,13 +72,13 @@ const tailFormItemLayout = {
       offset: 0,
     },
     sm: {
-      span: 16,
-      offset: 8,
+      span: 18,
+      offset: 6,
     },
   },
 };
 
-const App = () => {
+function App() {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
@@ -114,11 +115,11 @@ const App = () => {
     if (!value) {
       setAutoCompleteResult([]);
     } else {
-      setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
+      setAutoCompleteResult(['.com', '.org', '.net'].map(domain => `${value}${domain}`));
     }
   };
 
-  const websiteOptions = autoCompleteResult.map((website) => ({
+  const websiteOptions = autoCompleteResult.map(website => ({
     label: website,
     value: website,
   }));
@@ -326,14 +327,15 @@ const App = () => {
         valuePropName="checked"
         rules={[
           {
-            validator: (_, value) =>
-              value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
+            validator: (_, value) => (value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement'))),
           },
         ]}
         {...tailFormItemLayout}
       >
         <Checkbox>
-          I have read the <a href="">agreement</a>
+          I have read the
+          {' '}
+          <a href=" ">agreement</a>
         </Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
@@ -343,6 +345,6 @@ const App = () => {
       </Form.Item>
     </Form>
   );
-};
+}
 
 export default App;

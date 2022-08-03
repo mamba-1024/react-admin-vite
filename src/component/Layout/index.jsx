@@ -1,82 +1,95 @@
-import { Breadcrumb, Layout, Menu } from 'antd';
-import { useState } from 'react';
-const { Header, Content, Footer, Sider } = Layout;
-
-import { Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
-
-import { menus } from '../../router';
-
+import React, { useState, useMemo } from 'react';
+import { Layout } from 'antd';
+import { Outlet } from 'react-router-dom';
+import Breadcrumb from './Breadcrumb';
+import DrawerComp from './Drawer';
+import Sidebar from './Sidebar';
+import Header from './Header';
+import Footer from './Footer';
 import './index.less';
 
-const App = props => {
+import { ThemeContext, THEME, COLOR_WEAK } from '../../context';
+
+const { Content } = Layout;
+
+function App() {
   const [collapsed, setCollapsed] = useState(false);
-  let navigate = useNavigate();
-  let location = useLocation();
-  let params = useParams();
+  const [theme, setTheme] = useState(THEME);
+  const [colorWeak, setColorWeak] = useState(COLOR_WEAK);
+  const [fixedSidebar, setFixedSidebar] = useState(true);
+  const [fixedHeader, setFixedHeader] = useState(true);
 
-  console.log(location);
-
-  const onSelect = e => {
-    console.log(e);
-    navigate(`${e.key}` + location.search);
+  const toggleSetting = (key, value) => {
+    if (key === 'colorWeak') {
+      setColorWeak(value);
+    }
+    if (key === 'fixedSidebar') {
+      setFixedSidebar(value);
+    }
+    if (key === 'fixedHeader') {
+      setFixedHeader(value);
+    }
   };
 
-  return (
-    <Layout
-      style={{
-        minHeight: '100vh',
-      }}
-    >
-      <Sider collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={['1']}
-          mode="inline"
-          items={menus}
-          onSelect={onSelect}
-        />
-      </Sider>
-      <Layout className="site-layout">
-        <Header
-          className="site-layout-background"
-          style={{
-            padding: 0,
-          }}
-        />
-        <Content
-          style={{
-            margin: '0 16px',
-          }}
-        >
-          <Breadcrumb
-            style={{
-              margin: '16px 0',
-            }}
-          >
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            className="site-layout-background"
-            style={{
-              padding: 24,
-              minHeight: 360,
-            }}
-          >
-            <Outlet />
-          </div>
-        </Content>
-        <Footer
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
-      </Layout>
-    </Layout>
+  const store = useMemo(
+    () => ({
+      theme,
+      toggleTheme: setTheme,
+      collapsed,
+      toggleCollapsed: setCollapsed,
+      colorWeak,
+      toggleSetting,
+      fixedSidebar,
+      fixedHeader,
+    }),
+    [collapsed, theme, colorWeak, fixedSidebar, fixedHeader],
   );
-};
+
+  const layoutStyle = useMemo(() => {
+    if (fixedSidebar && collapsed) {
+      return { marginLeft: 80 };
+    } 
+    if (fixedSidebar) {
+      return { marginLeft: 200 };
+    } 
+
+    return { marginLeft: 0 };
+  }, [fixedSidebar, collapsed]);
+
+  return (
+    <ThemeContext.Provider value={store}>
+      <Layout className="site-layout">
+        <Sidebar />
+        <Layout
+          style={{
+            minHeight: '100vh',
+            ...layoutStyle,
+          }}
+        >
+          <Header />
+          <Content
+            style={{
+              margin: '0 16px',
+              paddingTop: fixedHeader ? 48 : 0,
+            }}
+          >
+            <Breadcrumb />
+            <div
+              className="site-layout-background"
+              style={{
+                padding: 24,
+                minHeight: 360,
+              }}
+            >
+              <Outlet />
+            </div>
+          </Content>
+          <Footer />
+        </Layout>
+        <DrawerComp />
+      </Layout>
+    </ThemeContext.Provider>
+  );
+}
 
 export default App;

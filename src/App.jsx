@@ -1,96 +1,32 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, useRoutes } from 'react-router-dom';
-import Home from './pages/home';
-import Layout from './component/Layout';
-import './App.css';
+import React, { useState, useMemo } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+import 'moment/locale/zh-cn';
 
-import { routers } from './router';
+import { LocaleContext, LOCALE, localeMap } from './context/locale';
 
-import Login from './pages/login';
+import Router from './routes';
 
 
 function App() {
-  let myRoutes = [];
+  const [language, setLanguage] = useState(LOCALE);
 
-  const renderRoute = route => {
-    return (
-      <Route
-        key={route.key}
-        path={route.path}
-        element={route.element}
-      />
-    );
-  };
-
-  routers.forEach(route => {
-    if (route.children) {
-      route.children.forEach(ele => {
-        myRoutes.push(renderRoute(ele));
-      });
-    } else {
-      myRoutes.push(renderRoute(route));
-    }
-  });
-
-
-  // const GetRouter = () => {
-  //   const element = useRoutes(routers)
-  //   return element;
-  // }
-
+  const store = useMemo(
+    () => ({
+      locale: language,
+      toggleLocale: setLanguage,
+    }),
+    [language],
+  );
 
   return (
-    <BrowserRouter>
-      {/* <GetRouter /> */}
-      <Routes>
-        <Route path="login" element={<Login />} />
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-
-          {myRoutes}
-          {/* <Route
-            path="/dashboard"
-            element={
-              <React.Suspense fallback={<Spin />}>
-                <Dashboard />
-              </React.Suspense>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <React.Suspense fallback={<Spin />}>
-                <About />
-              </React.Suspense>
-            }
-          />
-          <Route
-            path="/form/basic-form"
-            element={
-              <React.Suspense fallback={<Spin />}>
-                <BasicForm />
-              </React.Suspense>
-            }
-          />
-          <Route
-            path="/form/pro-form"
-            element={
-              <React.Suspense fallback={<Spin />}>
-                <ProForm />
-              </React.Suspense>
-            }
-          /> */}
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <LocaleContext.Provider value={store}>
+      <ConfigProvider locale={localeMap[language]}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </ConfigProvider>
+    </LocaleContext.Provider>
   );
 }
 

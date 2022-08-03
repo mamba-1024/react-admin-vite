@@ -1,0 +1,60 @@
+.container {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+
+  row-gap: 10px;
+  column-gap: 10px;
+
+
+  > div {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item0 {
+    background-color: aqua;
+  }
+
+  .item1 {
+    background-color: aquamarine;
+  }
+
+  .item2 {
+    background-color: bisque;
+  }
+
+  .item3 {
+    background-color: burlywood;
+  }
+
+  .item4 {
+    background-color: chocolate;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .item5 {
+    background-color: cornflowerblue;
+  }
+
+  .item6 {
+    background-color: darkcyan;
+  }
+
+  .item7 {
+    background-color: darkgreen;
+  }
+
+  .item8 {
+    background-color: darkorchid;
+  }
+
+  .activeItem {
+    opacity: 0.6;
+  }
+}

@@ -1,8 +1,10 @@
+import React from 'react';
 import { Button, Form, Input, Select, Space, Tooltip, Typography } from 'antd';
+
 const { Option } = Select;
 
 const App = () => {
-  const onFinish = values => {
+  const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
 
@@ -11,10 +13,10 @@ const App = () => {
       name="complex-form"
       onFinish={onFinish}
       labelCol={{
-        span: 8,
+        span: 6,
       }}
       wrapperCol={{
-        span: 16,
+        span: 18,
       }}
     >
       <Form.Item label="Username">

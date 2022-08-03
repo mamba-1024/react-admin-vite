@@ -1,3 +1,157 @@
-.site-layout-background {
-  background-color: #fff;
+// @root-entry-name: 'default';
+// @import (reference) 'antd/es/style/themes/index.less';
+
+
+.site-layout {
+  .ant-layout-header {
+    height: 48px;
+    line-height: 48px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+    background-color: #fff;
+    color: inherit;
+  }
+  .ant-layout-header&-header-fixed {
+    position: fixed;
+    top: 0;
+    width: calc(100% - 200px);
+    z-index: 100;
+  }
+
+  &-header&-header-light {
+    background-color: #fff;
+    color: inherit;
+  }
+
+  &-header&-header-dark {
+    background-color: #001529;
+    color: #fff;
+  }
+
+  &-header&-header-collapsed {
+    width: calc(100% - 80px);
+  }
+
+  &-header-locale {
+    cursor: pointer;
+    padding: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    vertical-align: middle;
+  }
+
+  &-sider {
+    box-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
+  }
+
+  &-sider&-sider-fixed {
+    overflow: auto;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+}
+
+.logo-wrap {
+  height: 64px;
+  display: flex;
+  align-items: center;
+
+  .app-logo {
+    height: 48px;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .app-logo {
+      animation: app-logo-spin infinite 20s linear;
+    }
+  }
+
+  @keyframes app-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .logo-title {
+    font-weight: 500;
+    font-size: large;
+  }
+
+  .logo-title-dark {
+    color: #fff;
+  }
+
+  .logo-title-light {
+    color: #2f353d;
+  }
+}
+
+.drawer-handle {
+  position: absolute;
+  top: 240px;
+  right: 300px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  background-color: var(--ant-primary-color);
+}
+
+.theme-style {
+  margin-bottom: 20px;
+
+  &-dark {
+    background-color: #1d2129;
+  }
+  &-light {
+    background-color: #f0f2f5;
+  }
+}
+
+.theme-style-content {
+  display: flex;
+  flex-direction: row;
+
+  &-item {
+    margin-right: 20px;
+    width: 44px;
+    height: 36px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
+    cursor: pointer;
+    text-align: center;
+    line-height: 36px;
+  }
+}
+
+.theme-color {
+  &-block {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 20px;
+  }
+}
+
+.other-setting {
+  margin-top: 20px;
 }

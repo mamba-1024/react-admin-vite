@@ -1,24 +1,23 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import {
-  createStyleImportPlugin,
-} from 'vite-plugin-style-import'
+// import {
+//   createStyleImportPlugin,
+// } from 'vite-plugin-style-import';
+import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    createStyleImportPlugin({
-      libs: [
-        {
-          libraryName: 'antd',
-          esModule: true,
-          resolveStyle: name => {
-            return `antd/es/${name}/style/index`;
-          },
-        },
-      ],
-    }),
+    // createStyleImportPlugin({
+    //   libs: [
+    //     {
+    //       libraryName: 'antd',
+    //       esModule: true,
+    //       resolveStyle: name => `antd/es/${name}/style/index`,
+    //     },
+    //   ],
+    // }),
   ],
   css: {
     preprocessorOptions: {
@@ -30,16 +29,16 @@ export default defineConfig({
   },
   resolve: process.env.USE_SOURCE
     ? {
-        alias: {
-          // "react-router": path.resolve(
-          //   __dirname,
-          //   "../../packages/react-router/index.tsx"
-          // ),
-          "react-router-dom": path.resolve(
-            __dirname,
-            "../../packages/react-router-dom/index.tsx"
-          ),
-        },
-      }
+      alias: {
+        // "react-router": path.resolve(
+        //   __dirname,
+        //   "../../packages/react-router/index.tsx"
+        // ),
+        'react-router-dom': path.resolve(
+          __dirname,
+          '../../packages/react-router-dom/index.tsx',
+        ),
+      },
+    }
     : {},
 });
