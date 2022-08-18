@@ -64,22 +64,18 @@ function AboutPage() {
     onChange: (current) => {
       setQuery({ ...query, page: current });
     },
-    showTotal: totals => `Total ${totals} items`,
+    showTotal: (totals) => `Total ${totals} items`,
   };
 
   return (
     <Spin spinning={loading}>
-      <PageHeader
-        onBack={() => null}
-        title="普通表格"
-        backIcon={false}
-      />
+      <PageHeader onBack={() => null} title="普通表格" backIcon={false} />
 
       <Table
         columns={columns}
         dataSource={list}
         pagination={pagination}
-        rowKey={record => record.id}
+        rowKey={(record) => record.id}
       />
     </Spin>
   );
