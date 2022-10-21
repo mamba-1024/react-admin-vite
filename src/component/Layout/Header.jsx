@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout, Dropdown, Menu, Space, notification } from 'antd';
-import { TranslationOutlined, UserOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
+import { TranslationOutlined, UserOutlined, SettingOutlined, LogoutOutlined, CloseOutlined, SkinOutlined } from '@ant-design/icons';
 import i18n from 'i18next';
 import { ThemeContext } from '../../context';
 import { LocaleContext } from '../../context/locale';
@@ -11,7 +11,9 @@ const { Header } = Layout;
 
 const userName = 'admin';
 export default () => {
-  const { collapsed, fixedHeader } = React.useContext(ThemeContext);
+  const {
+    collapsed, fixedHeader, themeVisible, toggleThemeVisible,
+  } = React.useContext(ThemeContext);
   const { locale, toggleLocale } = React.useContext(LocaleContext);
   const navigate = useNavigate();
 
@@ -48,7 +50,11 @@ export default () => {
 
   const menu = <Menu onClick={handleChangeLocale} items={locales} selectedKeys={[locale]} />;
 
-  const userMenu = <Menu items={userMenus} onClick={handleUserMenus}/>;
+  const userMenu = <Menu items={userMenus} onClick={handleUserMenus} />;
+
+  const showDrawer = () => {
+    toggleThemeVisible(!themeVisible);
+  };
 
   /**
    * site-layout-header-${theme} 可用于切换 header 的背景色
@@ -64,13 +70,31 @@ export default () => {
     >
       <Space>
         <Dropdown overlay={userMenu} className="site-layout-header-locale">
-          <div style={{ height: 48 }}>
+          <div style={{ height: 48 }} className="site-item">
             <UserOutlined style={{ fontSize: 18, marginRight: 6 }} />{userName}
           </div>
         </Dropdown>
         <Dropdown overlay={menu} className="site-layout-header-locale">
-          <TranslationOutlined style={{ fontSize: 18, height: 48 }} />
+          <span className="site-item">
+            <TranslationOutlined style={{ fontSize: 18 }} />
+          </span>
         </Dropdown>
+        <div className="drawer-handle" onClick={showDrawer}>
+          {themeVisible ? (
+            <SkinOutlined
+              style={{
+                fontSize: 18,
+              }}
+            />
+          ) : (
+            <SkinOutlined
+              style={{
+                fontSize: 18,
+              }}
+            />
+          )}
+        </div>
+
       </Space>
     </Header>
   );

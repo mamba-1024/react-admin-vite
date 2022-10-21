@@ -18,6 +18,7 @@ function App() {
   const [colorWeak, setColorWeak] = useState(COLOR_WEAK);
   const [fixedSidebar, setFixedSidebar] = useState(true);
   const [fixedHeader, setFixedHeader] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const toggleSetting = (key, value) => {
     if (key === 'colorWeak') {
@@ -41,8 +42,10 @@ function App() {
       toggleSetting,
       fixedSidebar,
       fixedHeader,
+      themeVisible: visible,
+      toggleThemeVisible: setVisible,
     }),
-    [collapsed, theme, colorWeak, fixedSidebar, fixedHeader],
+    [collapsed, theme, colorWeak, fixedSidebar, fixedHeader, visible],
   );
 
   const layoutStyle = useMemo(() => {
@@ -85,8 +88,8 @@ function App() {
             </div>
           </Content>
           <Footer />
+          <DrawerComp />
         </Layout>
-        <DrawerComp />
       </Layout>
     </ThemeContext.Provider>
   );

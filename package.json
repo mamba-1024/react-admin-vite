@@ -5,16 +5,34 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "lintJs": "eslint ./src --syntax --cache --ext .es6,.jsx,.js,.tsx,.ts --ignore-pattern .gitignore",
+    "lint:js:fix": "npm run lintJs -- --fix",
+    "stylelint": "stylelint ./src/**/*/*.less",
+    "stylelint:fix": "npm run stylelint --fix"
+  },
+  "config": {
+    "commit-message-validator": {
+      "pattern": "^(M|merge .*)|(v[0-9]+\\.[0-9]+\\.[0-9]+)|((revert: )?(feat|fix|docs|style|refactor|perf|test|chore)(\\(\\#[0-9]+\\))?: .{1,50})",
+      "errorMessage": "Commit does not follow semantic messages - please check https://dev.to/maxpou/enhance-your-git-log-with-conventional-commits-3ea4"
+    }
   },
   "lint-staged": {
-    "*.{js,ts,tsx,jsx}": "eslint",
-    "*.{css,less,scss}": "stylelint"
+    "./src/**/*.{js,ts,tsx,jsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "./src/**/*.{css,less,scss}": [
+      "stylelint --syntax less --fix",
+      "git add"
+    ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commit-message-validator",
+      "pre-commit": "lint-staged"
     }
   },
   "dependencies": {

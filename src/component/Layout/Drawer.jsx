@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Drawer, List, ConfigProvider, Tooltip, Switch, Divider } from 'antd';
-import { SettingOutlined, CloseOutlined, CheckOutlined } from '@ant-design/icons';
+import { CheckOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../../context';
 
@@ -8,13 +8,15 @@ const PRIMARY_COLOR = ['#1e80ff', '#0073FF', '#52C41A', '#F4664A', '#FAAD14', '#
 
 export default function DrawerComp() {
   const { t } = useTranslation();
-  const { theme, toggleTheme, colorWeak, toggleSetting, fixedSidebar, fixedHeader } =
+  const {
+    theme, toggleTheme, colorWeak, toggleSetting,
+    fixedSidebar, fixedHeader, themeVisible, toggleThemeVisible,
+  } =
     useContext(ThemeContext);
-  const [visible, setVisible] = useState(false);
   const [color, setColor] = useState(PRIMARY_COLOR[0]);
 
   const showDrawer = () => {
-    setVisible(val => !val);
+    toggleThemeVisible(!themeVisible);
   };
 
   const handleChangeColor = (val) => {
@@ -44,32 +46,13 @@ export default function DrawerComp() {
 
     toggleSetting(key, value);
   };
-
+  console.log('themeVisible: ', themeVisible);
   return (
     <Drawer
-      handler={
-        <div className="drawer-handle" onClick={showDrawer}>
-          {visible ? (
-            <CloseOutlined
-              style={{
-                color: '#fff',
-                fontSize: 20,
-              }}
-            />
-          ) : (
-            <SettingOutlined
-              style={{
-                color: '#fff',
-                fontSize: 20,
-              }}
-            />
-          )}
-        </div>
-      }
       placement="right"
       closable={false}
       onClose={showDrawer}
-      visible={visible}
+      visible={themeVisible}
       width={300}
     >
       <div className="theme-style">
@@ -97,7 +80,7 @@ export default function DrawerComp() {
       <div className="theme-color">
         <h3>{t('layout.themeColor')}</h3>
         <div className="theme-style-content">
-          {PRIMARY_COLOR.map(ele => (
+          {PRIMARY_COLOR.map((ele) => (
             <div
               key={ele}
               onClick={() => {

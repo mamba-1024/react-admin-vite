@@ -99,19 +99,21 @@
 }
 
 .drawer-handle {
-  position: absolute;
-  top: 240px;
-  right: 300px;
-  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
+  width: 42px;
   height: 48px;
   font-size: 16px;
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  background-color: var(--ant-primary-color);
+
+  &:hover {
+    background-color: var(--ant-primary-color);
+  }
+}
+
+.site-item:hover {
+  color: var(--ant-primary-color);
 }
 
 .theme-style {
