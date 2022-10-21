@@ -13,5 +13,7 @@ export const ThemeContext = React.createContext({
   fixedHeader: true, // 固定头部
   fixedSidebar: true, // 固定侧边栏
   toggleSetting: () => {}, // 其他设置改变
+  themeVisible: false, // 主题设置
+  toggleThemeVisible: () => {}, // 主题设置开关
 });
 
