@@ -7,11 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "prepare": "husky install",
-    "test": "echo 'It is a test'",
-    "lintJs": "eslint ./src --cache --ext .es6,.jsx,.js,.tsx,.ts --ignore-pattern .gitignore",
-    "lint:js:fix": "npm run lintJs -- --fix",
-    "stylelint": "stylelint ./src/**/*/*.less",
-    "stylelint:fix": "npm run stylelint --fix"
+    "test": "echo 'It is a test'"
   },
   "lint-staged": {
     "./src/**/*.{js,ts,tsx,jsx}": [
@@ -63,7 +59,6 @@
     "husky": "^8.0.1",
     "less": "^4.1.3",
     "lint-staged": "^13.0.3",
-    "pre-commit": "^1.2.2",
     "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",
