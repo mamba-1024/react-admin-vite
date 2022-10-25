@@ -1,9 +1,7 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import {
-  Button, Checkbox, Form, Input, message,
-} from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import './index.less';
 import { useTranslation } from 'react-i18next';
 import { request } from '../../utils/request';
@@ -19,17 +17,19 @@ function App() {
       url: '/api/login',
       method: 'post',
       data: values,
-    }).then((res) => {
-      if (res.verifySuccess) {
-        message.success('登录成功', 0.5, () => {
-          navigate('/dashboard');
-        });
-      } else {
-        message.error('用户名或密码错误');
-      }
-    }).finally(() => {
-      setLoading(false);
-    });
+    })
+      .then((res) => {
+        if (res.verifySuccess) {
+          message.success('登录成功', 0.5, () => {
+            navigate('/dashboard');
+          });
+        } else {
+          message.error('用户名或密码错误');
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -51,7 +51,10 @@ function App() {
             },
           ]}
         >
-          <Input placeholder='账户 admin' prefix={<UserOutlined className="site-form-item-icon" />} />
+          <Input
+            placeholder="账户 admin"
+            prefix={<UserOutlined className="site-form-item-icon" />}
+          />
         </Form.Item>
         <Form.Item
           name="password"
@@ -82,9 +85,7 @@ function App() {
           <Button loading={loading} type="primary" htmlType="submit" className="login-form-button">
             {t('login.confirm')}
           </Button>
-        Or
-          {' '}
-          <a href=" ">register now!</a>
+          Or <a href=" ">register now!</a>
         </Form.Item>
       </Form>
     </div>
