@@ -2,6 +2,8 @@
 
 <div align="center">
 
+[![OSCS Status](https://www.oscs1024.com/platform/badge/mamba-1024/first-rule.svg?size=small)](https://www.oscs1024.com/project/mamba-1024/first-rule?ref=badge_small)
+
 开箱即用的中台前端解决方案。
 </div>
 
