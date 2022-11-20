@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Layout } from 'antd';
+import { Layout, ConfigProvider } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Breadcrumb from './Breadcrumb';
 import DrawerComp from './Drawer';
@@ -8,7 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './index.less';
 
-import { ThemeContext, THEME, COLOR_WEAK } from '../../context';
+import { ThemeContext, THEME, COLOR_WEAK, COLOR_PRIMARY } from '../../context';
 
 const { Content } = Layout;
 
@@ -19,6 +19,7 @@ function App() {
   const [fixedSidebar, setFixedSidebar] = useState(true);
   const [fixedHeader, setFixedHeader] = useState(true);
   const [visible, setVisible] = useState(false);
+  const [colorPrimary, setColorPrimary] = useState(COLOR_PRIMARY);
 
   const toggleSetting = (key, value) => {
     if (key === 'colorWeak') {
@@ -44,53 +45,63 @@ function App() {
       fixedHeader,
       themeVisible: visible,
       toggleThemeVisible: setVisible,
+      colorPrimary,
+      toggleColorPrimary: setColorPrimary,
     }),
-    [collapsed, theme, colorWeak, fixedSidebar, fixedHeader, visible],
+    [collapsed, theme, colorWeak, fixedSidebar, fixedHeader, visible, colorPrimary]
   );
 
   const layoutStyle = useMemo(() => {
     if (fixedSidebar && collapsed) {
       return { marginLeft: 80 };
-    } 
+    }
     if (fixedSidebar) {
       return { marginLeft: 200 };
-    } 
+    }
 
     return { marginLeft: 0 };
   }, [fixedSidebar, collapsed]);
 
   return (
     <ThemeContext.Provider value={store}>
-      <Layout className="site-layout">
-        <Sidebar />
-        <Layout
-          style={{
-            minHeight: '100vh',
-            ...layoutStyle,
-          }}
-        >
-          <Header />
-          <Content
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary,
+          },
+        }}
+      >
+        <Layout className="site-layout">
+          <Sidebar />
+          <Layout
             style={{
-              margin: '0 16px',
-              paddingTop: fixedHeader ? 48 : 0,
+              minHeight: '100vh',
+              ...layoutStyle,
             }}
           >
-            <Breadcrumb />
-            <div
-              className="site-layout-background"
+            <Header />
+            <Content
               style={{
-                padding: 24,
-                minHeight: 360,
+                margin: '0 16px',
+                paddingTop: fixedHeader ? 48 : 0,
               }}
             >
-              <Outlet />
-            </div>
-          </Content>
-          <Footer />
-          <DrawerComp />
+              <Breadcrumb />
+              <div
+                className="site-layout-background"
+                style={{
+                  padding: 24,
+                  minHeight: 360,
+                }}
+              >
+                <Outlet />
+              </div>
+            </Content>
+            <Footer />
+            <DrawerComp />
+          </Layout>
         </Layout>
-      </Layout>
+      </ConfigProvider>
     </ThemeContext.Provider>
   );
 }

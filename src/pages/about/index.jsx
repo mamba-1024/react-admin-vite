@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Spin, PageHeader } from 'antd';
+import { Table, Spin } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
+
 import { request } from '../../utils/request';
 
 async function getListData(query) {

@@ -7,18 +7,15 @@ import { LocaleContext, LOCALE, localeMap } from './context/locale';
 
 import Router from './routes';
 
-
 function App() {
   const [language, setLanguage] = useState(LOCALE);
-
   const store = useMemo(
     () => ({
       locale: language,
       toggleLocale: setLanguage,
     }),
-    [language],
+    [language]
   );
-
   return (
     <LocaleContext.Provider value={store}>
       <ConfigProvider locale={localeMap[language]}>

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import { Card, Row, Col, PageHeader } from 'antd';
+import { Card, Row, Col } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
 import { Gauge, Liquid, Column } from '@ant-design/plots';
 import DemoLine from './Line';
 import DemoChoroplethMap from './ChoroplethMap';
@@ -55,6 +56,7 @@ export default function Dashboard() {
         style: ({ percent }) => ({
           fontSize: '18px',
           lineHeight: 1,
+          // eslint-disable-next-line no-nested-ternary
           color: percent < ticks[1] ? color[0] : percent < ticks[2] ? color[1] : color[2],
         }),
       },
@@ -82,7 +84,7 @@ export default function Dashboard() {
       length: 128,
     },
   };
-  
+
   const data = [
     {
       type: '家具家电',
@@ -149,30 +151,26 @@ export default function Dashboard() {
 
   return (
     <div>
-      <PageHeader
-        onBack={() => null}
-        title="Dashboard"
-        backIcon={false}
-      />
+      <PageHeader onBack={() => null} title="Dashboard" backIcon={false} />
 
       <Row gutter={[24]}>
         <Col span={8}>
           <Card title="动态仪表盘" bordered={false}>
             <div style={{ width: '100%', height: 180 }}>
-              <Gauge {...config} ref={graphRef}/>
+              <Gauge {...config} ref={graphRef} />
             </div>
           </Card>
         </Col>
         <Col span={8}>
           <Card title="进度" bordered={false}>
             <div style={{ width: '100%', height: 180 }}>
-              <Liquid {...LiquidConfig}/>
+              <Liquid {...LiquidConfig} />
             </div>
           </Card>
         </Col>
         <Col span={8}>
           <Card title="分类条目" bordered={false}>
-            <div style={{ width: '100%', height: 180 }} >
+            <div style={{ width: '100%', height: 180 }}>
               <Column {...ColumnConfig} />
             </div>
           </Card>
