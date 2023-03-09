@@ -5,7 +5,7 @@ import Layout from '../component/Layout';
 
 const Dashboard = React.lazy(() => import('../pages/dashboard'));
 const About = React.lazy(() => import('../pages/about'));
-
+const DragCell = React.lazy(() => import('../pages/dragCell'));
 // 公共模块路由
 
 const Routes = [
@@ -29,6 +29,15 @@ const Routes = [
         label: 'About', // 路由名称
         icon: <HeartOutlined />, // 路由图标
         element: LazyComp(About), // 路由组件
+      },
+      {
+        path: '/dragCell', // 路由路径
+        key: '/dragCell',
+        exact: true, // 是否精确匹配
+        hide: false, // 是否隐藏
+        label: 'DragCell', // 路由名称
+        icon: <HeartOutlined />, // 路由图标
+        element: LazyComp(DragCell), // 路由组件
       },
     ],
   },
