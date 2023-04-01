@@ -3,10 +3,15 @@ import react from '@vitejs/plugin-react';
 // import {
 //   createStyleImportPlugin,
 // } from 'vite-plugin-style-import';
-import path from 'path';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    host: 'localhost', // vite默认值
+    port: 5173, // vite默认值
+    open: true, // 自动打开浏览器
+  },
   plugins: [
     react(),
     // createStyleImportPlugin({
@@ -34,7 +39,7 @@ export default defineConfig({
         //   __dirname,
         //   "../../packages/react-router/index.tsx"
         // ),
-        'react-router-dom': path.resolve(
+        'react-router-dom': resolve(
           __dirname,
           '../../packages/react-router-dom/index.tsx',
         ),

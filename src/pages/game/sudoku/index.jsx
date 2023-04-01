@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './index.less';
-import { message } from 'antd';
+import { message, Row, Col } from 'antd';
+import Count from './count';
 
 const sudokuArray = [
   { index: 0, dataIndex: 0 },
@@ -20,14 +21,14 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (Max - Min + 1)) + Min; // 含最大值，含最小值
 }
 
-function easeInOutQuad(currentTime, startValue = 0, changeValue = 5000, duration = 5000) {
-  currentTime /= duration / 2;
-  if (currentTime < 1) return (changeValue / 2) * currentTime * currentTime + startValue;
-  currentTime--;
-  return (-changeValue / 2) * (currentTime * (currentTime - 2) - 1) + startValue;
-}
+// function easeInOutQuad(currentTime, startValue = 0, changeValue = 5000, duration = 5000) {
+//   currentTime /= duration / 2;
+//   if (currentTime < 1) return (changeValue / 2) * currentTime * currentTime + startValue;
+//   currentTime--;
+//   return (-changeValue / 2) * (currentTime * (currentTime - 2) - 1) + startValue;
+// }
 
-function animate({ timing = f => f, draw, duration = 5000 }) {
+function animate({ timing = (f) => f, draw, duration = 5000 }) {
   const start = performance.now();
   let requestId;
 
@@ -112,9 +113,11 @@ const Sudoku = () => {
   };
 
   return (
-    <div className="container">
-      {sudokuArray.map(ele => renderItem(ele))}
-      {/* <div className='item2'>2</div>
+    <Row>
+      <Col span={8}>
+        <div className="container">
+          {sudokuArray.map((ele) => renderItem(ele))}
+          {/* <div className='item2'>2</div>
       <div className='item3'>3</div>
 
       <div className='item8'>8</div>
@@ -124,7 +127,12 @@ const Sudoku = () => {
       <div className='item7'>7</div>
       <div className='item6'>6</div>
       <div className='item5'>5</div> */}
-    </div>
+        </div>
+      </Col>
+      <Col span={16}>
+        <Count />
+      </Col>
+    </Row>
   );
 };
 

@@ -15,11 +15,12 @@
     background-color: #fff;
     color: inherit;
   }
+
   .ant-layout-header&-header-fixed {
     position: fixed;
     top: 0;
     width: calc(100% - 200px);
-    z-index: 100;
+    z-index: 1001;
   }
 
   &-header&-header-light {
@@ -79,6 +80,7 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }
@@ -122,6 +124,7 @@
   &-dark {
     background-color: #1d2129;
   }
+
   &-light {
     background-color: #f0f2f5;
   }

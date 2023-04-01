@@ -1,12 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
-import 'moment/locale/zh-cn';
-
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
 import { LocaleContext, LOCALE, localeMap } from './context/locale';
 
 import Router from './routes';
 
+dayjs.locale('zh-cn');
+
+dayjs.locale('zh-cn');
 function App() {
   const [language, setLanguage] = useState(LOCALE);
   const store = useMemo(

@@ -55,11 +55,17 @@
 
 ## 本地启动
 
-```
-npm install
+> version: Node > 16.0
 
+```
+// 安装依赖
+pnpm install
+
+// 启动
 npm run dev
 
+// 访问
+localhost:5173
 ```
 
 ## 接口说明

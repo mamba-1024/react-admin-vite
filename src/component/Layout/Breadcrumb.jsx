@@ -30,10 +30,7 @@ export default () => {
       style={{
         margin: '16px 0',
       }}
-    >
-      {breadcrumbItems.map(item => (
-        <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>
-      ))}
-    </Breadcrumb>
+      items={breadcrumbItems.map((item) => ({ title: item }))}
+    />
   );
 };
