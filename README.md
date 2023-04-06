@@ -23,6 +23,7 @@
 - 内置国际化，使用[react-i18next](https://react.i18next.com/)可以快速支持国际化应用，目前支持中文和英文两种，也可以自行添加语言
 - 内置 `eslint`、`.prettierrc`、`.stylelintrc` 格式检查
 - 内置 `commitlint`、`husky` 提交检查
+- 内置 [`tailwind 3.0`](https://tailwindcss.com/docs/installation) 可以快速编写 css 样式
 
 ## 目录结构
 ```
