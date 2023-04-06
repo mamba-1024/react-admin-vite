@@ -33,6 +33,12 @@ module.exports = {
       },
     ],
     'at-rule-no-unknown': null,
+    'scss/at-rule-no-unknown': [
+        true,
+        {
+            'ignoreAtRules': ['tailwind']
+        }
+    ],
     'no-descending-specificity': null,
     'scss/at-rule-no-unknown': true,
     'property-no-unknown': null,
@@ -43,5 +49,5 @@ module.exports = {
       },
     ],
   },
-  ignoreFiles: ['node_modules/**', '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+  ignoreFiles: ['node_modules/**', '**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', 'src/tailwind.css'],
 };
