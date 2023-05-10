@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const THEME = 'light';
+export const THEME = 'dark';
 
 export const COLOR_WEAK = false;
 
@@ -9,7 +9,7 @@ export const COLORS = ['#1677ff', '#0073FF', '#52C41A', '#F4664A', '#FAAD14', '#
 export const COLOR_PRIMARY = '#1677ff';
 
 export const ThemeContext = React.createContext({
-  theme: 'light', // 默认主题 light | dark
+  theme: 'dark', // 默认主题 light | dark
   toggleTheme: () => {},
   collapsed: false, // 默认收起
   toggleCollapsed: () => {}, // 收起改变

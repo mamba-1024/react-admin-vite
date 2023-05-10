@@ -33,10 +33,10 @@ function App() {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container h-screen pt-16">
       <Form
         name="normal_login"
-        className="login-form"
+        className="login-form bg-white p-12 rounded-md"
         initialValues={{
           remember: true,
         }}

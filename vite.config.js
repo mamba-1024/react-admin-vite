@@ -29,6 +29,10 @@ export default defineConfig({
       less: {
         // 支持内联 JavaScript
         javascriptEnabled: true,
+        // additionalData: `@import "${resolve(
+        //   __dirname,
+        //   'src/styles/base.less',
+        // )}";`,
       },
     },
   },
